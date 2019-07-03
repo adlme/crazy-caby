@@ -39,52 +39,36 @@ function main() {
     gameInstance.gameOverCallback(createGameOverScreen);
     gameInstance.startGame();
     document.addEventListener("keydown", event => {
+        gameInstance.checkCollisionsBuildings();
       if (event.key === "ArrowDown") {
-          gameInstance.caby.width = 40;
-          gameInstance.caby.height = 45;
-          gameInstance.caby.imageSRC = './cabyDOWN.png'
- 
-        if (gameInstance.isCollide) {
-          gameInstance.caby.setDirectionY(-1);
-          gameInstance.isCollide = false;
-        } else {
-          gameInstance.caby.setDirectionY(1);
-          gameInstance.caby.setDirectionX(0);
-        }
+        gameInstance.caby.width = 40;
+        gameInstance.caby.height = 45;
+        gameInstance.caby.imageSRC = "./cabyDOWN.png";
+
+        gameInstance.caby.setDirectionY(1);
+        gameInstance.caby.setDirectionX(0);
       } else if (event.key === "ArrowUp") {
         gameInstance.caby.width = 40;
         gameInstance.caby.height = 45;
         console.log(event.key);
-        gameInstance.caby.imageSRC = './cabyUP.png'
-        if (gameInstance.isCollide) {
-          gameInstance.caby.setDirectionY(1);
-          gameInstance.isCollide = false;
-        } else {
-          gameInstance.caby.setDirectionY(-1);
-          gameInstance.caby.setDirectionX(0);
-        }
+        gameInstance.caby.imageSRC = "./cabyUP.png";
+
+        gameInstance.caby.setDirectionY(-1);
+        gameInstance.caby.setDirectionX(0);
       } else if (event.key === "ArrowRight") {
         gameInstance.caby.width = 45;
         gameInstance.caby.height = 40;
-        gameInstance.caby.imageSRC = './cabyRIGHT.png'
-        if (gameInstance.isCollide) {
-          gameInstance.caby.setDirectionX(-1);
-          gameInstance.isCollide = false;
-        } else {
-          gameInstance.caby.setDirectionY(0);
-          gameInstance.caby.setDirectionX(1);
-        }
+        gameInstance.caby.imageSRC = "./cabyRIGHT.png";
+
+        gameInstance.caby.setDirectionY(0);
+        gameInstance.caby.setDirectionX(1);
       } else if (event.key === "ArrowLeft") {
         gameInstance.caby.width = 45;
         gameInstance.caby.height = 40;
-        gameInstance.caby.imageSRC = './cabyLEFT.png'
-        if (gameInstance.isCollide) {
-          gameInstance.caby.setDirectionX(1);
-          gameInstance.isCollide = false;
-        } else {
-          gameInstance.caby.setDirectionX(-1);
-          gameInstance.caby.setDirectionY(0);
-        }
+        gameInstance.caby.imageSRC = "./cabyLEFT.png";
+
+        gameInstance.caby.setDirectionX(-1);
+        gameInstance.caby.setDirectionY(0);
       }
     });
     document.addEventListener("keyup", event => {

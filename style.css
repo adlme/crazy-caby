@@ -117,26 +117,38 @@ html {
   .time {
     height: 30px;
     width: 200px;
-    border: 1px solid black;
     text-align: center;
-    background-color: yellow;
     color: black;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     letter-spacing: 3px;
     vertical-align: middle; 
+    font-size: 40px;
+    font-family: 'Press Start 2P', cursive;
+    animation: blinker 1s linear infinite;
+    
+    
   }
-
+  
   .splashScreen {
     background-image: url("./splashScreenBG.png");
     background-size: 800px 600px;
-
   }
+
+  .splashScreen button{
+   
+  };
+
   /* ---- section ----*/
   
   section.testimonials {
-    // ...
+   
   }
   
   section.testimonials .button {
     margin-bottom: 10px;
   }
+        @keyframes blinker {
+          20% {
+            opacity: 0;
+          }
+        };
