@@ -91,23 +91,47 @@ html {
     background-image: url("./city_street_maps_dribbble.jpg");
   }
 
-  #chat {
+  .chat {
     height: 30px;
     width: 400px;
     border: 1px solid black;
+    text-align: center;
+    background-color: yellow;
+    color: black;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    letter-spacing: 3px;
+    vertical-align: middle;
   }
 
-  #bank {
+  .bank {
     height: 30px;
     width: 200px;
     border: 1px solid black;
+    text-align: center;
+    background-color: yellow;
+    color: black;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    letter-spacing: 3px;
+    vertical-align: middle;
   }
-  #time {
+  .time {
     height: 30px;
     width: 200px;
     border: 1px solid black;
+    text-align: center;
+    background-color: yellow;
+    color: black;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    letter-spacing: 3px;
+    vertical-align: middle; 
   }
-  /* ---- section ---- */
+
+  .splashScreen {
+    background-image: url("./splashScreenBG.png");
+    background-size: 800px 600px;
+
+  }
+  /* ---- section ----*/
   
   section.testimonials {
     // ...

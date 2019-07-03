@@ -3,14 +3,14 @@
 function Caby(canvas) {
   this.canvas = canvas;
   this.ctx = canvas.getContext('2d');
-  this.height = 20;
-  this.width = 40;
+  this.height = 40;
+  this.width = 45;
   this.x = 200;
   this.y = 300;
   this.velocity = 4;
   this.directionX = null;
   this.directionY = null;
-  this.color = 'blue';
+  this.imageSRC = './cabyRIGHT.png';
 }
 
 Caby.prototype.checkScreen = function() {
@@ -46,10 +46,11 @@ Caby.prototype.move = function() {
 };
 
 Caby.prototype.draw = function() {
-  this.ctx.fillStyle = this.color;
+  this.ctx.globalAlpha = 0;
   this.ctx.fillRect(this.x, this.y, this.width, this.height);
+  this.ctx.globalAlpha = 1.0;
   this.image = new Image();
-  this.image.src = '';
+  this.image.src = this.imageSRC;
   this.ctx.drawImage(this.image,this.x,this.y, this.width, this.height);
 };
 

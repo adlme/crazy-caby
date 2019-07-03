@@ -9,8 +9,7 @@ function main() {
 
   function createSplashScreen() {
     var splashScreen = buildDom(` 
-        <section>
-            <h1>Crazy Caby</h1>
+        <section class = "splashScreen" style="width:800px;height:600px;border:0;">
             <button>Start</button>
         </section>
         `);
@@ -20,17 +19,17 @@ function main() {
   function createGameScreen() {
     var gameScreen = buildDom(`
         <section>
-            <canvas width="800" height="600")></canvas>
+            <canvas width="800" height="600"></canvas>
         </section>
         <section id = "container">
-            <article id="chat">
-                <p class = "destiny">"Take me to the !"</p>
+            <article class = "chat">
+                <div id= "destiny"></div>
             </article>
-            <article id="bank">
-                <p>Money: </p>
+            <article class="bank">
+                <div id = "bank"></div>
             </article>
-            <article id="time">
-                <p>Time: </p>
+            <article class="time">
+                <div id = "timer"></div>
             </article>
         </section>
         `);
@@ -41,8 +40,9 @@ function main() {
     gameInstance.startGame();
     document.addEventListener("keydown", event => {
       if (event.key === "ArrowDown") {
-          gameInstance.caby.width = 20;
-          gameInstance.caby.height = 40;
+          gameInstance.caby.width = 40;
+          gameInstance.caby.height = 45;
+          gameInstance.caby.imageSRC = './cabyDOWN.png'
  
         if (gameInstance.isCollide) {
           gameInstance.caby.setDirectionY(-1);
@@ -52,8 +52,10 @@ function main() {
           gameInstance.caby.setDirectionX(0);
         }
       } else if (event.key === "ArrowUp") {
-        gameInstance.caby.width = 20;
-        gameInstance.caby.height = 40;
+        gameInstance.caby.width = 40;
+        gameInstance.caby.height = 45;
+        console.log(event.key);
+        gameInstance.caby.imageSRC = './cabyUP.png'
         if (gameInstance.isCollide) {
           gameInstance.caby.setDirectionY(1);
           gameInstance.isCollide = false;
@@ -62,8 +64,9 @@ function main() {
           gameInstance.caby.setDirectionX(0);
         }
       } else if (event.key === "ArrowRight") {
-        gameInstance.caby.width = 40;
-        gameInstance.caby.height = 20;
+        gameInstance.caby.width = 45;
+        gameInstance.caby.height = 40;
+        gameInstance.caby.imageSRC = './cabyRIGHT.png'
         if (gameInstance.isCollide) {
           gameInstance.caby.setDirectionX(-1);
           gameInstance.isCollide = false;
@@ -72,8 +75,9 @@ function main() {
           gameInstance.caby.setDirectionX(1);
         }
       } else if (event.key === "ArrowLeft") {
-        gameInstance.caby.width = 40;
-        gameInstance.caby.height = 20;
+        gameInstance.caby.width = 45;
+        gameInstance.caby.height = 40;
+        gameInstance.caby.imageSRC = './cabyLEFT.png'
         if (gameInstance.isCollide) {
           gameInstance.caby.setDirectionX(1);
           gameInstance.isCollide = false;
