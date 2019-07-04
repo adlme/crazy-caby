@@ -16,6 +16,8 @@ function Game(canvas) {
   this.gameSong.volume = 0.15;
   this.hello = new Audio("./hello-there-sound-effectstar-wars.mp3");
   this.bye = new Audio("./bye-have-a-beautiful-time-sound-effect.mp3");
+  this.yell = new Audio("./y2mate.com - fuck_you_sound_effect_ILgu5bvir14.mp3")
+  this.yell.volume = 0.4;
   this.isShowMessage = false;
   this.clientsDropped = 0;
   this.addMoney = false;
@@ -204,6 +206,7 @@ Game.prototype.startGame = function() {
       requestAnimationFrame(loop);
     } else {
       this.onGameOver(this.bankValue, this.clientsDropped);
+      this.gameSong.pause();
     }
   };
   loop();
@@ -222,28 +225,6 @@ Game.prototype.timer = function() {
     this.isGameOver = true;
     this.gameSong.pause();
   }
-
-  // var downloadTimer = setInterval(() => {
-  //   this.timeLeft = this.timeLeft - 1;
-  //   if (this.timeLeft <= 0) {
-  //     clearInterval(downloadTimer);
-  //     this.isGameOver = true;
-  //     this.gameSong.pause();
-  //   }
-  //   if (!this.addTime) {
-  //     var timerElement = document.querySelector("#timer");
-  //     function buildTimer(html) {
-  //       timerElement.innerHTML = html;
-  //       return timerElement;
-  //     }
-  //     var showTimer = () => {
-  //       var timerWindow = buildTimer(`
-  //             <p>${this.timeLeft}</p>
-  //             `);
-  //     };
-  //     showTimer();
-  //   }
-  // }, 1000);
 };
 
 Game.prototype.bank = function() {
@@ -279,6 +260,7 @@ Game.prototype.checkCollisionsClients = function() {
     if (rightLeft && leftRight && botttomTop && topBottom && client.type === "taxist") 
     { this.bankValue -= 10;
       this.timeLeft -= 10;
+      this.yell.play();
       this.clients.splice(index, 1);
       this.showMessage();
       this.cabyFull = null;
@@ -337,7 +319,7 @@ Game.prototype.showMessage = function() {
 Game.prototype.showAddMoney = function() {
   this.addMoney = true;
   var destinyElement = document.querySelector("#bank");
-  destinyElement.innerHTML = "<p>+5</p>";
+  destinyElement.innerHTML = "<p>+ $5</p>";
   setTimeout(() => {
     this.addMoney = false;
   }, 3000);
@@ -346,7 +328,7 @@ Game.prototype.showAddMoney = function() {
 Game.prototype.showAddTime = function() {
   this.addTime = true;
   var destinyElement = document.querySelector("#timer");
-  destinyElement.innerHTML = "<p>+5</p>";
+  destinyElement.innerHTML = "<p>+5 secs</p>";
   setTimeout(() => {
     this.addTime = false;
   }, 3000);

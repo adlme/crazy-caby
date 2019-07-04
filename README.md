@@ -2,7 +2,7 @@
 
 1. DESCRIPTION
 
-The game consists of driving your cabify around Coast City, picking up customers and driving them to their destinations.
+The game consists of driving your cabify around Coast City, picking up customers and driving them to their destinations. Avoid the Taxis or you will lose money, time and your client!!!
 
 2. MVP (DOM - Deliverables)
 
