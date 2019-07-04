@@ -11,13 +11,16 @@ function Game(canvas) {
   this.timeLeft = 30;
   this.cabyFull = false;
   this.clients.client = " ";
-  this.bankValue = 100;
+  this.bankValue = 0;
   this.gameSong = new Audio("./the-offspring-all-i-want.mp3");
   this.gameSong.volume = 0.15;
   this.hello = new Audio("./hello-there-sound-effectstar-wars.mp3");
   this.bye = new Audio("./bye-have-a-beautiful-time-sound-effect.mp3");
   this.isShowMessage = false;
   this.clientsDropped = 0;
+  this.addMoney = false;
+  this.addTime = false;
+  this.cont = 0;
 }
 
 Game.prototype.startGame = function() {
@@ -31,79 +34,168 @@ Game.prototype.startGame = function() {
   for (var i = 0; i < 11; i++) {
     // debugger;
     if (i === 0) {
-      this.clients.push(new Client(this.canvas, 'client', 220, 500, 25, 38, "Club", "./p1.png"));
+      this.clients.push(
+        new Client(this.canvas, "client", 220, 500, 25, 38, "Club", "./p1.png")
+      );
     } else if (i === 1) {
       this.clients.push(
-        new Client(this.canvas, 'client', 290, 200, 25, 34, "Restaurant", "./p2.png")
+        new Client(
+          this.canvas,
+          "client",
+          290,
+          200,
+          25,
+          34,
+          "Restaurant",
+          "./p2.png"
+        )
       );
     } else if (i === 2) {
-      this.clients.push(new Client(this.canvas, 'client', 80, 300, 25, 41,  "Beach", "./p3.png"));
+      this.clients.push(
+        new Client(this.canvas, "client", 80, 300, 25, 41, "Beach", "./p3.png")
+      );
     } else if (i === 3) {
       this.clients.push(
-        new Client(this.canvas, 'client', 500, 500, 25, 19, "Supermarket", "./p4.png")
+        new Client(
+          this.canvas,
+          "client",
+          500,
+          500,
+          25,
+          19,
+          "Supermarket",
+          "./p4.png"
+        )
       );
     } else if (i === 4) {
       this.clients.push(
-        new Client(this.canvas, 'client', 125, 410, 25, 34, "Hospital", "./p5.png")
+        new Client(
+          this.canvas,
+          "client",
+          125,
+          410,
+          25,
+          34,
+          "Hospital",
+          "./p5.png"
+        )
       );
     } else if (i === 5) {
-      this.clients.push(new Client(this.canvas, 'client', 500, 300, 25, 21, 'Park', './p6.png')
+      this.clients.push(
+        new Client(this.canvas, "client", 500, 300, 25, 21, "Park", "./p6.png")
       );
     } else if (i === 6) {
-      this.clients.push(new Client(this.canvas, 'taxist', 400, 300, 50, 22.5, 'HAHAHAHA!', './taxi.png')
+      this.clients.push(
+        new Client(
+          this.canvas,
+          "taxist",
+          400,
+          300,
+          50,
+          22.5,
+          "HAHAHAHA!",
+          "./taxi.png"
+        )
       );
-  } else if (i === 7) {
-    this.clients.push(new Client(this.canvas, 'taxist', 450, 500, 50, 22.5, 'HAHAHAHA!', './taxi.png')
-    );
-  } else if (i === 8) {
-    this.clients.push(new Client(this.canvas, 'taxist', 600, 150, 50, 22.5, 'HAHAHAHA!', './taxi.png')
-    );
-  } else if (i === 9) {
-    this.clients.push(new Client(this.canvas, 'taxist', 270, 400, 50, 22.5, 'HAHAHAHA!', './taxi.png')
-    );
-  } else if (i === 10) {
-    this.clients.push(new Client(this.canvas, 'taxist', 50, 420, 50, 22.5, 'HAHAHAHA!', './taxi.png')
-    );
+    } else if (i === 7) {
+      this.clients.push(
+        new Client(
+          this.canvas,
+          "taxist",
+          450,
+          500,
+          50,
+          22.5,
+          "HAHAHAHA!",
+          "./taxi.png"
+        )
+      );
+    } else if (i === 8) {
+      this.clients.push(
+        new Client(
+          this.canvas,
+          "taxist",
+          600,
+          150,
+          50,
+          22.5,
+          "HAHAHAHA!",
+          "./taxi.png"
+        )
+      );
+    } else if (i === 9) {
+      this.clients.push(
+        new Client(
+          this.canvas,
+          "taxist",
+          270,
+          400,
+          50,
+          22.5,
+          "HAHAHAHA!",
+          "./taxi.png"
+        )
+      );
+    } else if (i === 10) {
+      this.clients.push(
+        new Client(
+          this.canvas,
+          "taxist",
+          50,
+          420,
+          50,
+          22.5,
+          "HAHAHAHA!",
+          "./taxi.png"
+        )
+      );
+    }
   }
-};
 
   //se crean los BUILDINGS con posiciones fijadas
   for (var i = 0; i < 6; i++) {
     // debugger;
     if (i === 0) {
-      this.buildings.push(new Building(this.canvas, 670, 110, "Club", 70, 70, 'grey'));
+      this.buildings.push(
+        new Building(this.canvas, 670, 110, "Club", 70, 70, "grey")
+      );
     } else if (i === 1) {
       this.buildings.push(
-        new Building(this.canvas, 240, 270, "Restaurant", 80, 30, 'brown')
+        new Building(this.canvas, 240, 270, "Restaurant", 80, 30, "brown")
       );
     } else if (i === 2) {
       this.buildings.push(
-        new Building(this.canvas, 680, 310, "Beach", 60, 140, 'yellow')
+        new Building(this.canvas, 680, 310, "Beach", 60, 140, "yellow")
       );
     } else if (i === 3) {
       this.buildings.push(
-        new Building(this.canvas, 80, 470, "Supermarket", 90, 40, 'cyan')
+        new Building(this.canvas, 80, 470, "Supermarket", 90, 40, "cyan")
       );
     } else if (i === 4) {
       this.buildings.push(
-        new Building(this.canvas, 0, 160, "Hospital", 70, 70, 'red')
+        new Building(this.canvas, 0, 160, "Hospital", 70, 70, "red")
       );
     } else if (i === 5) {
-      this.buildings.push(new Building(this.canvas, 380, 180, "Park", 100, 50, 'green')
+      this.buildings.push(
+        new Building(this.canvas, 380, 180, "Park", 100, 50, "green")
       );
     }
   }
 
   var loop = () => {
+    this.cont++;
+    this.timer();
     this.update();
     this.clear();
     this.draw();
     this.checkCollisionsClients();
     var hasCollided = this.checkCollisionsBuildings();
-    this.bank();
-    if(this.clientsDropped === 6) {
-      this.isGameOver=true
-    };
+    if (!this.addMoney) {
+      this.bank();
+    }
+    if (this.clientsDropped === 6) {
+      this.isGameOver = true;
+    }
     if (hasCollided) {
       this.caby.moveBack();
     }
@@ -118,39 +210,45 @@ Game.prototype.startGame = function() {
 };
 
 Game.prototype.timer = function() {
-  var downloadTimer = setInterval(() => {
-    this.timeLeft = this.timeLeft - 1;
-    if (this.timeLeft <= 0) {
-      clearInterval(downloadTimer);
-      this.isGameOver = true;
-      this.gameSong.pause();
-    }
+  if (this.cont % 60 === 0) {
+    this.timeLeft--;
+  }
+
+  if (!this.addTime) {
     var timerElement = document.querySelector("#timer");
-    function buildTimer(html) {
-      timerElement.innerHTML = html;
-      return timerElement;
-    }
-    var showTimer = () => {
-      var timerWindow = buildTimer(` 
-              <p>${this.timeLeft}</p>
-              `);
-    };
-    showTimer();
-  }, 1000);
+    timerElement.innerHTML = `<p>${this.timeLeft}</p>`;
+  }
+  if (this.timeLeft <= 0) {
+    this.isGameOver = true;
+    this.gameSong.pause();
+  }
+
+  // var downloadTimer = setInterval(() => {
+  //   this.timeLeft = this.timeLeft - 1;
+  //   if (this.timeLeft <= 0) {
+  //     clearInterval(downloadTimer);
+  //     this.isGameOver = true;
+  //     this.gameSong.pause();
+  //   }
+  //   if (!this.addTime) {
+  //     var timerElement = document.querySelector("#timer");
+  //     function buildTimer(html) {
+  //       timerElement.innerHTML = html;
+  //       return timerElement;
+  //     }
+  //     var showTimer = () => {
+  //       var timerWindow = buildTimer(`
+  //             <p>${this.timeLeft}</p>
+  //             `);
+  //     };
+  //     showTimer();
+  //   }
+  // }, 1000);
 };
 
 Game.prototype.bank = function() {
-    var bankElement = document.querySelector("#bank");
-    function buildBank(html) {
-    bankElement.innerHTML = html;
-    return bankElement;
-    };
-    var showBank = () => {
-        var bankWindow = buildBank(`
-            <p>$ ${this.bankValue}</p>
-            `);
-          };
-        showBank();
+  var bankElement = document.querySelector("#bank");
+  bankElement.innerHTML = `${this.bankValue}`;
 };
 
 Game.prototype.update = function() {
@@ -178,21 +276,27 @@ Game.prototype.checkCollisionsClients = function() {
     var botttomTop = this.caby.y + this.caby.height >= client.y;
     var topBottom = this.caby.y <= client.y + client.height;
 
-    if (rightLeft && leftRight && botttomTop && topBottom && client.type ==='taxist') {
-      if(this.cabyFull) {
-        this.clientsDropped ++;
-      };
-      this.bankValue -= 10;
+    if (rightLeft && leftRight && botttomTop && topBottom && client.type === "taxist") 
+    { this.bankValue -= 10;
       this.timeLeft -= 10;
-      this.clients.splice(index, 1); 
+      this.clients.splice(index, 1);
       this.showMessage();
       this.cabyFull = null;
-    } else if (rightLeft && leftRight && botttomTop && topBottom && !this.cabyFull) {
+    } else if (
+      rightLeft &&
+      leftRight &&
+      botttomTop &&
+      topBottom &&
+      !this.cabyFull
+    ) {
       this.clients.splice(index, 1);
       this.hello.play();
-      
-      
-      this.cabyFull = { isFull: true, client: client.destiny, type: client.type};
+
+      this.cabyFull = {
+        isFull: true,
+        client: client.destiny,
+        type: client.type
+      };
       // muestre destino
       var destinyElement = document.querySelector("#destiny");
       function buildDestiny(html) {
@@ -224,13 +328,29 @@ Game.prototype.checkCollisionsClients = function() {
 Game.prototype.showMessage = function() {
   this.isShowMessage = true;
   var destinyElement = document.querySelector("#destiny");
-  destinyElement.innerHTML = '<p>HAHAHAHA</p>';
-  setTimeout(()=>{
+  destinyElement.innerHTML = "<p>HAHAHAHA</p>";
+  setTimeout(() => {
     this.isShowMessage = false;
+  }, 3000);
+};
 
-  },3000)
-  
-}
+Game.prototype.showAddMoney = function() {
+  this.addMoney = true;
+  var destinyElement = document.querySelector("#bank");
+  destinyElement.innerHTML = "<p>+5</p>";
+  setTimeout(() => {
+    this.addMoney = false;
+  }, 3000);
+};
+
+Game.prototype.showAddTime = function() {
+  this.addTime = true;
+  var destinyElement = document.querySelector("#timer");
+  destinyElement.innerHTML = "<p>+5</p>";
+  setTimeout(() => {
+    this.addTime = false;
+  }, 3000);
+};
 
 Game.prototype.checkCollisionsBuildings = function() {
   var collision = false;
@@ -243,15 +363,16 @@ Game.prototype.checkCollisionsBuildings = function() {
     if (rightLeft && leftRight && bottomTop && topBottom) {
       collision = true;
       if (this.cabyFull) {
-        if(this.buildings[index].name === this.cabyFull.client) {
-            console.log(this.clients);
-            this.cabyFull = null;
-            this.clientsDropped ++;
-            this.timeLeft += 5;
-            this.bankValue +=5;
-            this.bye.play();
+        if (this.buildings[index].name === this.cabyFull.client) {
+          this.showAddMoney();
+          this.showAddTime();
+          this.cabyFull = null;
+          this.clientsDropped++;
+          this.timeLeft += 5;
+          this.bankValue += 5;
+          this.bye.play();
         }
-       } 
+      }
     }
   });
   return collision;

@@ -23,13 +23,13 @@ function main() {
         </section>
         <section id = "container">
             <article class = "chat">
-                <div id= "destiny"></div>
+                <div id="destiny"></div>
             </article>
             <article class="bank">
-                <div id = "bank"></div>
+                <div id="bank"></div>
             </article>
             <article class="time">
-                <div id = "timer"></div>
+                <div id="timer"></div>
             </article>
         </section>
         `);
