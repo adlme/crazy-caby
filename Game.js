@@ -8,11 +8,10 @@ function Game(canvas) {
   this.canvas = canvas;
   this.ctx = this.canvas.getContext("2d");
   this.onGameOver = null;
-  this.timeLeft = 20;
-  this.isCollide = false;
+  this.timeLeft = 40;
   this.cabyFull = false;
   this.clients.client = " ";
-  this.bank = 0;
+  this.bankValue = 1;
   this.gameSong = new Audio("./the-offspring-all-i-want.mp3");
   this.gameSong.volume = 0.15;
   this.hello = new Audio("./hello-there-sound-effectstar-wars.mp3");
@@ -24,6 +23,7 @@ Game.prototype.startGame = function() {
   this.gameSong.play();
   this.caby = new Caby(this.canvas);
   this.timer();
+
   // this.bank();
   //se crean los CLIENTS con posiciones fijadas
   for (var i = 0; i < 7; i++) {
@@ -53,36 +53,38 @@ Game.prototype.startGame = function() {
   for (var i = 0; i < 6; i++) {
     // debugger;
     if (i === 0) {
-      this.buildings.push(new Building(this.canvas, 670, 110, "Club", 70, 70));
+      this.buildings.push(new Building(this.canvas, 670, 110, "Club", 70, 70, 'grey'));
     } else if (i === 1) {
       this.buildings.push(
-        new Building(this.canvas, 240, 270, "Restaurant", 80, 30)
+        new Building(this.canvas, 240, 270, "Restaurant", 80, 30, 'brown')
       );
     } else if (i === 2) {
       this.buildings.push(
-        new Building(this.canvas, 680, 310, "Beach", 60, 140)
+        new Building(this.canvas, 680, 310, "Beach", 60, 140, 'yellow')
       );
     } else if (i === 3) {
       this.buildings.push(
-        new Building(this.canvas, 80, 470, "Supermarket", 90, 40)
+        new Building(this.canvas, 80, 470, "Supermarket", 90, 40, 'cyan')
       );
     } else if (i === 4) {
       this.buildings.push(
-        new Building(this.canvas, 0, 160, "Hospital", 70, 70)
+        new Building(this.canvas, 0, 160, "Hospital", 70, 70, 'red')
       );
     } else if (i === 5) {
-      this.buildings.push(new Building(this.canvas, 380, 180, "Park", 100, 50));
+      this.buildings.push(new Building(this.canvas, 380, 180, "Park", 100, 50, 'green'));
     }
   }
 
   var loop = () => {
-    this.checkCollisionsClients();
-    this.checkCollisionsBuildings();
     this.update();
-    this.checkCollisionsClients();
     this.clear();
     this.draw();
-    this.checkCollisionsBuildings();
+    this.checkCollisionsClients();
+    var hasCollided = this.checkCollisionsBuildings();
+    this.bank();
+    if (hasCollided) {
+      this.caby.moveBack();
+    }
     this.caby.checkScreen();
     if (!this.isGameOver) {
       requestAnimationFrame(loop);
@@ -115,19 +117,19 @@ Game.prototype.timer = function() {
   }, 1000);
 };
 
-// Game.prototype.bank = function() {
-//     var bankElement = document.querySelector("#bank");
-//     function buildBank(html) {
-//     bankElement.innerHTML = html;
-//     return bankElement;
-//     };
-//     var showBank = () => {
-//         var bankWindow = buildBank(`
-//             <p>$${this.bank}</p>
-//             `);
-//           };
-//           showBank();
-// };
+Game.prototype.bank = function() {
+    var bankElement = document.querySelector("#bank");
+    function buildBank(html) {
+    bankElement.innerHTML = html;
+    return bankElement;
+    };
+    var showBank = () => {
+        var bankWindow = buildBank(`
+            <p>$ ${this.bankValue}</p>
+            `);
+          };
+        showBank();
+};
 
 Game.prototype.update = function() {
   this.caby.move();
@@ -187,8 +189,7 @@ Game.prototype.checkCollisionsClients = function() {
 };
 
 Game.prototype.checkCollisionsBuildings = function() {
-  var hadCollide = false;
-  var newPosition = this.caby;
+  var collision = false;
   this.buildings.forEach((building, index) => {
     var rightLeft = this.caby.x + this.caby.width > building.x;
     var leftRight = this.caby.x < building.x + building.width;
@@ -196,34 +197,18 @@ Game.prototype.checkCollisionsBuildings = function() {
     var topBottom = this.caby.y < building.y + building.height;
 
     if (rightLeft && leftRight && bottomTop && topBottom) {
-      
-      if(this.caby.directionX===1){
-        this.caby.directionX=0;
-        this.caby.x-=3;
-      }else if(this.caby.directionX===-1){
-        this.caby.directionX=0;
-        this.caby.x+=3;
-      }else if(this.caby.directionY===1){
-        this.caby.directionY=0;
-        this.caby.y-=3;
-      }else if(this.caby.directionY===-1){
-        this.caby.directionY=0;
-        this.caby.y+=3;
-      }
-
+      collision = true;
       if (this.cabyFull) {
         if(this.buildings[index].name === this.cabyFull.client) {
             this.cabyFull = null;
             this.timeLeft += 2;
-            this.bank +=5;
+            this.bankValue +=5;
             this.bye.play();
         }
        } 
-      this.caby.directionX = 0;
-      this.caby.directionY = 0;
-      this.isCollide=true;
     }
   });
+  return collision;
 };
 
 Game.prototype.gameOverCallback = function(callback) {

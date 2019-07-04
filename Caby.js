@@ -44,6 +44,10 @@ Caby.prototype.move = function() {
   this.y = this.y + this.directionY * this.velocity;
   this.x = this.x + this.directionX * this.velocity;
 };
+Caby.prototype.moveBack = function() {
+  this.y = this.y - this.directionY * this.velocity;
+  this.x = this.x - this.directionX * this.velocity;
+};
 
 Caby.prototype.draw = function() {
   this.ctx.globalAlpha = 0;

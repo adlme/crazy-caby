@@ -10,7 +10,7 @@ function main() {
   function createSplashScreen() {
     var splashScreen = buildDom(` 
         <section class = "splashScreen" style="width:800px;height:600px;border:0;">
-            <button>Start</button>
+            <button></button>
         </section>
         `);
     var startButton = splashScreen.querySelector("button");
@@ -39,7 +39,6 @@ function main() {
     gameInstance.gameOverCallback(createGameOverScreen);
     gameInstance.startGame();
     document.addEventListener("keydown", event => {
-        gameInstance.checkCollisionsBuildings();
       if (event.key === "ArrowDown") {
         gameInstance.caby.width = 40;
         gameInstance.caby.height = 45;
@@ -50,7 +49,6 @@ function main() {
       } else if (event.key === "ArrowUp") {
         gameInstance.caby.width = 40;
         gameInstance.caby.height = 45;
-        console.log(event.key);
         gameInstance.caby.imageSRC = "./cabyUP.png";
 
         gameInstance.caby.setDirectionY(-1);

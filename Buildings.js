@@ -1,11 +1,11 @@
 'use strict';
 
-function Building(canvas,positionX, positionY, buildingName, width, height) {
+function Building(canvas,positionX, positionY, buildingName, width, height, colorBuilding) {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
     this.x = positionX;
     this.y = positionY;
-    this.color = 'green';
+    this.color = colorBuilding;
     this.width = width;
     this.height = height;
     this.name = buildingName;
