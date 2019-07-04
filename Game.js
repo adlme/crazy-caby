@@ -16,7 +16,7 @@ function Game(canvas) {
   this.gameSong.volume = 0.15;
   this.hello = new Audio("./hello-there-sound-effectstar-wars.mp3");
   this.bye = new Audio("./bye-have-a-beautiful-time-sound-effect.mp3");
-  this.yell = new Audio("./y2mate.com - fuck_you_sound_effect_ILgu5bvir14.mp3")
+  this.yell = new Audio("./FU.mp3")
   this.yell.volume = 0.4;
   this.isShowMessage = false;
   this.clientsDropped = 0;
