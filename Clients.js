@@ -1,13 +1,14 @@
 'use strict';
 
-function Client(canvas, positionX, positionY, destiny,imageClient) {
+function Client(canvas, typeClient, positionX, positionY, widthClient, heightClient, destiny,imageClient) {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
+    this.type = typeClient;
     this.x = positionX;
     this.y = positionY;
     this.color = 'red';
-    this.width = 25;
-    this.height = 25;
+    this.width = widthClient;
+    this.height = heightClient;
     this.destiny = destiny;
     this.imageSRC = imageClient
 };

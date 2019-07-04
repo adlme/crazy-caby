@@ -40,29 +40,29 @@ function main() {
     gameInstance.startGame();
     document.addEventListener("keydown", event => {
       if (event.key === "ArrowDown") {
-        gameInstance.caby.width = 40;
-        gameInstance.caby.height = 45;
+        gameInstance.caby.width = 55;
+        gameInstance.caby.height = 62;
         gameInstance.caby.imageSRC = "./cabyDOWN.png";
 
         gameInstance.caby.setDirectionY(1);
         gameInstance.caby.setDirectionX(0);
       } else if (event.key === "ArrowUp") {
-        gameInstance.caby.width = 40;
-        gameInstance.caby.height = 45;
+        gameInstance.caby.width = 55;
+        gameInstance.caby.height = 62;
         gameInstance.caby.imageSRC = "./cabyUP.png";
 
         gameInstance.caby.setDirectionY(-1);
         gameInstance.caby.setDirectionX(0);
       } else if (event.key === "ArrowRight") {
-        gameInstance.caby.width = 45;
-        gameInstance.caby.height = 40;
+        gameInstance.caby.width = 62;
+        gameInstance.caby.height = 55;
         gameInstance.caby.imageSRC = "./cabyRIGHT.png";
 
         gameInstance.caby.setDirectionY(0);
         gameInstance.caby.setDirectionX(1);
       } else if (event.key === "ArrowLeft") {
-        gameInstance.caby.width = 45;
-        gameInstance.caby.height = 40;
+        gameInstance.caby.width = 62;
+        gameInstance.caby.height = 55;
         gameInstance.caby.imageSRC = "./cabyLEFT.png";
 
         gameInstance.caby.setDirectionX(-1);
@@ -75,10 +75,12 @@ function main() {
     });
   }
 
-  function createGameOverScreen() {
+  function createGameOverScreen(bankValue, clientsDropped) {
+    
     var gameOverScreen = buildDom(`
-            <section>    
-                <h1>Game Over</h1>
+            <section class = "gameover" style="width:800px;height:600px;border:0;">    
+                <p id = "bank-value">${bankValue}</p>
+                <p id = "clients-dropped">${clientsDropped}</p>
                 <button>Restart</button>
             </section>
         `);

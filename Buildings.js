@@ -18,6 +18,7 @@ Building.prototype.draw = function() {
     this.ctx.textAlign = 'center';
     this.ctx.textBaseline = 'middle';
     this.ctx.fillStyle = 'black';
+    this.ctx.font = '13px helvetica';
     this.ctx.fillText(this.name, this.x + (this.width/2), this.y + this.height/2);
    
 }

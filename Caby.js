@@ -3,8 +3,8 @@
 function Caby(canvas) {
   this.canvas = canvas;
   this.ctx = canvas.getContext('2d');
-  this.height = 40;
-  this.width = 45;
+  this.height = 55;
+  this.width = 62;
   this.x = 200;
   this.y = 300;
   this.velocity = 4;

@@ -101,6 +101,7 @@ html {
     letter-spacing: 3px;
     vertical-align: middle;
     text-shadow:  yellow;
+    font-size: 30px;
   }
 
   .bank {
@@ -143,7 +144,48 @@ html {
     border-style: dotted;
     background-color: transparent;
     animation: blinker 1s linear infinite;
-  };
+  }
+
+  .gameover{
+    position: relative;
+    background-image: url("./gameOver.png");
+    background-size: 800px 600px;
+  }
+
+  .gameover button{
+    position: absolute;
+    font-size: 40px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    border: none;
+    right: 290px;
+    top: 320px;
+    width: 250px;
+    height: 60px;
+    animation: blinker 1s linear infinite;
+  }
+
+  #bank-value {
+    position: absolute;
+    right: 450px;
+    top: 260px;
+    font-size: 70px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    border: none;
+    text-align: left;
+    color: green;
+  }
+
+  #clients-dropped {
+    position: absolute;
+    right: 118px;
+    top: 40px;
+    font-size: 80px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    border: none;
+    text-align: left;
+    color: white;
+  }
+
 
   /* ---- section ----*/
   
