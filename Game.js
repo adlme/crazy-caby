@@ -358,7 +358,6 @@ Game.prototype.checkCollisionsBuildings = function() {
           this.clientsDropped++;
           this.timeLeft += 5;
           this.newBankValue = 20 - (this.multiplier/2)*2;
-          console.log(this.newBankValue)
           this.showAddMoney();
           this.bankValue = Number.parseFloat(this.newBankValue + Number(this.bankValue)).toFixed(2);
           this.bye.play();
