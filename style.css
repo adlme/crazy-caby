@@ -163,6 +163,7 @@ html {
 
   .gameover button{
     position: absolute;
+    background-color: transparent;
     font-size: 40px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     border: none;

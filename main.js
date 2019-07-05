@@ -7,15 +7,21 @@ function main() {
     return mainElement;
   }
 
+
   function createSplashScreen() {
+    var heyhey = new Audio('./heyhey.mp3')
+    heyhey.volume = 0.3;
     var splashScreen = buildDom(` 
-        <section class = "splashScreen" style="width:800px;height:600px;border:0;">
-            <button></button>
-        </section>
-        `);
+    <section class = "splashScreen" style="width:800px;height:600px;border:0;">
+    <button></button>
+    </section>
+    `);
+    heyhey.play();
+    
     var startButton = splashScreen.querySelector("button");
     startButton.addEventListener("click", createGameScreen);
-  }
+  };
+  
   function createGameScreen() {
     var gameScreen = buildDom(`
         <section>
@@ -89,6 +95,7 @@ function main() {
   }
 
   createSplashScreen();
+
 }
 
 window.addEventListener("load", main);

@@ -8,12 +8,12 @@ function Game(canvas) {
   this.canvas = canvas;
   this.ctx = this.canvas.getContext("2d");
   this.onGameOver = null;
-  this.timeLeft = 30;
+  this.timeLeft = 25;
   this.cabyFull = false;
   this.clients.client = " ";
   this.bankValue = 0;
   this.gameSong = new Audio("./the-offspring-all-i-want.mp3");
-  this.gameSong.volume = 0.15;
+  this.gameSong.volume = 0.12;
   this.hello = new Audio("./hello-there-sound-effectstar-wars.mp3");
   this.bye = new Audio("./bye-have-a-beautiful-time-sound-effect.mp3");
   this.yell = new Audio("./FU.mp3")
@@ -264,12 +264,7 @@ Game.prototype.checkCollisionsClients = function() {
       this.clients.splice(index, 1);
       this.showMessage();
       this.cabyFull = null;
-    } else if (
-      rightLeft &&
-      leftRight &&
-      botttomTop &&
-      topBottom &&
-      !this.cabyFull
+    } else if (rightLeft && leftRight && botttomTop && topBottom && !this.cabyFull
     ) {
       this.clients.splice(index, 1);
       this.hello.play();
