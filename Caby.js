@@ -10,7 +10,8 @@ function Caby(canvas) {
   this.velocity = 4;
   this.directionX = null;
   this.directionY = null;
-  this.imageSRC = './cabyRIGHT.png';
+  this.img = new Image();
+  this.img.src = './cabyRIGHT.png'
 }
 
 Caby.prototype.checkScreen = function() {
@@ -50,18 +51,29 @@ Caby.prototype.moveBack = function() {
 };
 
 Caby.prototype.draw = function() {
-  this.ctx.globalAlpha = 0;
-  this.ctx.fillRect(this.x, this.y, this.width, this.height);
-  this.ctx.globalAlpha = 1.0;
-  this.image = new Image();
-  this.image.src = this.imageSRC;
-  this.ctx.drawImage(this.image,this.x,this.y, this.width, this.height);
+  this.ctx.drawImage(this.img,this.x,this.y, this.width, this.height);
 };
 
-Caby.prototype.setDirectionX = function(newDirectionX) {
+Caby.prototype.setImg = function(direction){
+  
+  if(direction === "right"){
+    this.img.src = './cabyRIGHT.png';
+  } 
+  else if(direction === "left"){
+    this.img.src = './cabyLEFT.png';
+  } 
+  else if(direction === "down"){
+    this.img.src = "./cabyDOWN.png"
+
+  } else if(direction === "up"){
+    this.img.src = "./cabyUP.png"
+  }
+}
+
+Caby.prototype.setDirectionX = function(newDirectionX, newDirectionY) {
   this.directionX = newDirectionX;
 };
 
-Caby.prototype.setDirectionY = function(newDirectionY) {
+Caby.prototype.setDirectionY = function(newDirectionY, newDirectionX) {
   this.directionY = newDirectionY;
 };

@@ -48,29 +48,28 @@ function main() {
       if (event.key === "ArrowDown") {
         gameInstance.caby.width = 55;
         gameInstance.caby.height = 62;
-        gameInstance.caby.imageSRC = "./cabyDOWN.png";
-
+        gameInstance.caby.setImg("down")
         gameInstance.caby.setDirectionY(1);
         gameInstance.caby.setDirectionX(0);
       } else if (event.key === "ArrowUp") {
         gameInstance.caby.width = 55;
         gameInstance.caby.height = 62;
-        gameInstance.caby.imageSRC = "./cabyUP.png";
-
+        
+        gameInstance.caby.setImg("up")
         gameInstance.caby.setDirectionY(-1);
         gameInstance.caby.setDirectionX(0);
       } else if (event.key === "ArrowRight") {
         gameInstance.caby.width = 62;
         gameInstance.caby.height = 55;
-        gameInstance.caby.imageSRC = "./cabyRIGHT.png";
-
+        
+        gameInstance.caby.setImg("right")
         gameInstance.caby.setDirectionY(0);
         gameInstance.caby.setDirectionX(1);
       } else if (event.key === "ArrowLeft") {
         gameInstance.caby.width = 62;
         gameInstance.caby.height = 55;
-        gameInstance.caby.imageSRC = "./cabyLEFT.png";
-
+        
+        gameInstance.caby.setImg("left")
         gameInstance.caby.setDirectionX(-1);
         gameInstance.caby.setDirectionY(0);
       }

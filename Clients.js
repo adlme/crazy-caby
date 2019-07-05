@@ -10,15 +10,11 @@ function Client(canvas, typeClient, positionX, positionY, widthClient, heightCli
     this.width = widthClient;
     this.height = heightClient;
     this.destiny = destiny;
-    this.imageSRC = imageClient
+    this.img = new Image();
+    this.img.src = imageClient
 };
 
 
 Client.prototype.draw = function() {
-    this.ctx.globalAlpha = 0;
-    this.ctx.fillRect(this.x, this.y, this.width, this.height);
-    this.ctx.globalAlpha = 1.0;
-    this.image = new Image();
-    this.image.src = this.imageSRC;
-    this.ctx.drawImage(this.image,this.x,this.y, this.width, this.height);
+    this.ctx.drawImage(this.img,this.x,this.y, this.width, this.height);
 }
