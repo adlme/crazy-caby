@@ -273,7 +273,9 @@ Game.prototype.checkCollisionsClients = function() {
       this.addTimeMessage = "- 10 secs"
       this.timeLeft -= 10;
       this.yell.play();
-      this.clientsDropped++;
+      if(this.cabyFull){
+        this.clientsDropped++;
+      };
       this.clients.splice(index, 1);
       this.operator = "";
       this.showMessage();
