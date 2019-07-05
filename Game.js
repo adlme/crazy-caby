@@ -23,6 +23,10 @@ function Game(canvas) {
   this.addMoney = false;
   this.addTime = false;
   this.cont = 0;
+  this.counterPrice = 0;
+  this.haveClient= false;
+  this.multiplier = 0;
+  this.newBankValue = 0;
 }
 
 Game.prototype.startGame = function() {
@@ -190,6 +194,9 @@ Game.prototype.startGame = function() {
     this.update();
     this.clear();
     this.draw();
+    if(this.haveClient) {
+      this.counterPrice++;
+    };
     this.checkCollisionsClients();
     var hasCollided = this.checkCollisionsBuildings();
     if (!this.addMoney) {
@@ -259,13 +266,16 @@ Game.prototype.checkCollisionsClients = function() {
 
     if (rightLeft && leftRight && botttomTop && topBottom && client.type === "taxist") 
     { this.bankValue -= 10;
+      this.bankValue = Number.parseFloat(this.bankValue).toFixed(2);
       this.timeLeft -= 10;
       this.yell.play();
+      this.clientsDropped++;
       this.clients.splice(index, 1);
       this.showMessage();
       this.cabyFull = null;
     } else if (rightLeft && leftRight && botttomTop && topBottom && !this.cabyFull
     ) {
+      this.haveClient=true;
       this.clients.splice(index, 1);
       this.hello.play();
 
@@ -314,7 +324,7 @@ Game.prototype.showMessage = function() {
 Game.prototype.showAddMoney = function() {
   this.addMoney = true;
   var destinyElement = document.querySelector("#bank");
-  destinyElement.innerHTML = "<p>+ $5</p>";
+  destinyElement.innerHTML = `<p>+ $${Number.parseFloat(this.newBankValue).toFixed(2)}</p>`;
   setTimeout(() => {
     this.addMoney = false;
   }, 3000);
@@ -341,12 +351,16 @@ Game.prototype.checkCollisionsBuildings = function() {
       collision = true;
       if (this.cabyFull) {
         if (this.buildings[index].name === this.cabyFull.client) {
-          this.showAddMoney();
+          this.haveClient=false;
+          this.multiplier = this.counterPrice/60;
           this.showAddTime();
           this.cabyFull = null;
           this.clientsDropped++;
           this.timeLeft += 5;
-          this.bankValue += 5;
+          this.newBankValue = 20 - (this.multiplier/2)*2;
+          console.log(this.newBankValue)
+          this.showAddMoney();
+          this.bankValue = Number.parseFloat(this.newBankValue + Number(this.bankValue)).toFixed(2);
           this.bye.play();
         }
       }
